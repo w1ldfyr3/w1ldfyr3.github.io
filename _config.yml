@@ -1,0 +1,179 @@
+# =========================================================
+# The Site Configuration
+# =========================================================
+
+theme: jekyll-theme-chirpy
+
+lang: en
+timezone: Asia/Karachi
+
+# =========================================================
+# SEO / Site Identity
+# =========================================================
+
+title: w1ldfyre
+tagline:
+description: >-
+  w1ldfyre's blog for sharing writeups and such.
+
+url: "https://w1ldfyr3.github.io"
+baseurl: ""
+
+# =========================================================
+# Author / Social
+# =========================================================
+
+github:
+  username: w1ldfyr3
+
+social:
+  name: w1ldfyr3
+  links:
+    - https://github.com/w1ldfyr3
+
+
+
+feed:
+  disable: true
+
+# =========================================================
+# Theme / Appearance
+# =========================================================
+
+theme_mode: dark
+
+avatar: /assets/img/avatar.png
+toc: true
+paginate: 10
+
+cdn:
+
+# =========================================================
+# Comments (Disabled)
+# =========================================================
+
+comments:
+  provider:
+
+# =========================================================
+# Analytics (Disabled)
+# =========================================================
+
+analytics:
+  google:
+    id:
+  goatcounter:
+    id:
+  umami:
+    id:
+    domain:
+  matomo:
+    id:
+    domain:
+  cloudflare:
+    id:
+  fathom:
+    id:
+
+pageviews:
+  provider:
+
+# =========================================================
+# PWA
+# =========================================================
+
+pwa:
+  enabled: false
+  cache:
+    enabled: true
+    deny_paths: []
+
+# =========================================================
+# Markdown & Syntax Highlighting
+# =========================================================
+
+kramdown:
+  footnote_backlink: "&#8617;&#xfe0e;"
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+# =========================================================
+# Collections & Defaults
+# =========================================================
+
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: false
+      toc: true
+      permalink: /posts/:title/
+
+  - scope:
+      path: _drafts
+    values:
+      comments: false
+
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+
+# =========================================================
+# Build Optimization
+# =========================================================
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
+
+# =========================================================
+# Archives
+# =========================================================
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
+
+# =========================================================
+# Exclusions
+# =========================================================
+
+exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - tools
+  - README.md
+  - LICENSE
+  - purgecss.js
+  - "*.config.js"
+  - "package*.json"
