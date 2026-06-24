@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>w1ldfyre</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="boot">
+  <div id="boot-prompt">[ press <span onclick="startDesktop()">enter</span> to continue ]</div>
+</div>
+
+<div id="desktop">
+
+  <div class="desk-icons">
+    <div class="desk-icon" data-app="about">
+      <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">
+      <span>w1ldfyre</span>
+    </div>
+    <div class="desk-icon" data-app="fuwiles">
+      <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="">
+      <span>Fuwiles</span>
+    </div>
+    <div class="desk-icon" data-app="links">
+      <img src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-3.png" alt="">
+      <span>Links</span>
+    </div>
+  </div>
+
+  <div id="win">
+    <div id="titlebar">
+      <img class="titlebar-icon" src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">
+      <span class="titlebar-title">w1ldfyre</span>
+      <div class="win-btn" onclick="minimizeWin()">_</div>
+      <div class="win-btn" onclick="toggleMaximize()">□</div>
+      <div class="win-btn close" onclick="closeWin()">✕</div>
+    </div>
+
+    <div id="menubar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Favorites</span>
+      <span class="menu-item">Help</span>
+    </div>
+
+    <div id="toolbar">
+      <div class="tool-icon" onclick="openApp('about')">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">
+        <span>About</span>
+      </div>
+      <div class="tool-sep"></div>
+      <div class="tool-icon" onclick="openApp('fuwiles')">
+        <img src="https://win98icons.alexmeub.com/icons/png/notepad-2.png" alt="">
+        <span>Fuwiles</span>
+      </div>
+      <div class="tool-icon" onclick="openApp('links')">
+        <img src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-3.png" alt="">
+        <span>Links</span>
+      </div>
+    </div>
+
+    <div id="addrbar">
+      <label>Address</label>
+      <input id="addr-input" type="text" value="C:\ABOUT" readonly>
+    </div>
+
+    <div id="tabs">
+      <div class="tab active" id="tab-btn-about" onclick="switchTab('about')">About</div>
+      <div class="tab" id="tab-btn-fuwiles" onclick="switchTab('fuwiles')">Fuwiles</div>
+      <div class="tab" id="tab-btn-links" onclick="switchTab('links')">Links</div>
+    </div>
+
+    <div id="win-content">
+      <div id="tab-about" class="tab-pane active">
+        <div class="profile-text">
+         <strong>About me:</strong><br>
+          Hi, I am w1ldfyre! Shinxer, cybersec student &amp; CTF-player @ THEM?!.
+          <br> 
+        </div>
+        <div class="last-updated">
+          <span class="dim">last updated:</span> 23-06-2026
+        </div>
+      </div>
+
+      <div id="tab-fuwiles" class="tab-pane">
+        <!-- List View -->
+        <div id="writeup-list-view">
+          <table class="fuwiles-table">
+            <thead>
+              <tr style="text-align: left; color: var(--text-dim); font-size: 10px;">
+                <th></th>
+                <th>Name</th>
+                <th>Tags</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody id="writeup-table-body">
+              <tr><td colspan="4" class="fuwiles-title">Loading writeups...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Post View (Hidden by default) -->
+        <div id="post-view" style="display: none;">
+          <div class="post-back" onclick="hideWriteupPost()">&lt;- Back to Fuwiles</div>
+          <div class="post-title-big" id="writeup-title">Title</div>
+          <div class="post-meta-line">Author: w1ldfyre | Type: Markdown</div>
+          <div id="post-body">Loading...</div>
+        </div>
+      </div>
+
+      <div id="tab-links" class="tab-pane">
+        <div class="links-section">
+          <h3>-- Profiles --</h3>
+          <a href="https://github.com/w1ldfyr3" target="_blank">Github</a> 
+          <a href="https://app.hackthebox.com/users/2067812" target="_blank">HackTheBox</a>
+          <a href="https://tryhackme.com/p/w1ldfyre" target="_blank">TryHackMe</a>
+        </div>        
+        </div>
+      </div>
+    </div>
+
+    <div id="resizer"></div>
+  </div>
+</div>
+
+<div id="taskbar">
+  <button id="start-btn" onclick="toggleStart()">
+    <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="">
+    Start
+  </button>
+  <div class="task-sep"></div>
+  <div class="task-btn active" id="task-main" onclick="restoreWin()">
+    <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">
+    w1ldfyre
+  </div>
+  <div id="taskbar-right">
+    <span id="clock-tb">00:00</span>
+  </div>
+</div>
+
+<div id="start-menu">
+  <div class="start-header">
+    <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">
+    <span>w1ldfyre</span>
+  </div>
+  <div class="start-item" onclick="openApp('about'); closeStart()">
+    <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer_cool-3.png" alt="">About
+  </div>
+  <div class="start-item" onclick="openApp('fuwiles'); closeStart()">
+    <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="">Fuwiles
+  </div>
+  <div class="start-item" onclick="openApp('links'); closeStart()">
+    <img src="https://win98icons.alexmeub.com/icons/png/network_cool_two_pcs-3.png" alt="">Links
+  </div>
+  <div class="start-sep"></div>
+  <div class="start-item" onclick="shutdown()">
+    <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-1.png" alt="">Shut Down
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>
