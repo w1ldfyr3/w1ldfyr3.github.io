@@ -5,7 +5,9 @@ const GITHUB_URL = "https://github.com/w1ldfyr3";
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 // ── BLOCK DRAG-SELECT ──
-document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("selectstart", e => {
+  if (!e.target.closest("#post-body")) e.preventDefault();
+});
 document.addEventListener("dragstart",   e => e.preventDefault());
 
 // ── MUSIC ──
@@ -257,7 +259,7 @@ function switchTab(id) {
     addr.classList.add("updating");
     setTimeout(() => addr.classList.remove("updating"), 400);
   }
-  
+
   // Trigger writeup load when the Fuwiles tab is clicked
   if (id === 'fuwiles') loadWriteups();
 }
@@ -328,14 +330,14 @@ async function loadWriteups() {
   if (writeupsLoaded) return; // Only fetch once per session to save API limits
   const tbody = document.getElementById('writeup-table-body');
   if (!tbody) return;
-  
+
   tbody.innerHTML = '<tr><td colspan="4" class="fuwiles-title">Fetching from GitHub...</td></tr>';
 
   try {
     // Fetch the contents of the /writeups folder via GitHub API
     const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/writeups`);
     if (!res.ok) throw new Error("API Error");
-    
+
     const files = await res.json();
     const mdFiles = files.filter(f => f.name.endsWith('.md'));
 
@@ -351,7 +353,7 @@ async function loadWriteups() {
       const title = file.name.replace('.md', '').replace(/-/g, ' ');
       const tr = document.createElement('tr');
       tr.onclick = () => openWriteupPost(file.name, title);
-      
+
       tr.innerHTML = `
         <td class="fuwiles-icon"><img src="https://win98icons.alexmeub.com/icons/png/notepad-2.png" alt="file"></td>
         <td class="fuwiles-title">${title}</td>
@@ -370,7 +372,7 @@ async function openWriteupPost(filename, title) {
   document.getElementById('writeup-list-view').style.display = 'none';
   const postView = document.getElementById('post-view');
   postView.style.display = 'block';
-  
+
   document.getElementById('writeup-title').innerText = title;
   document.getElementById('post-body').innerHTML = '<p>Loading markdown...</p>';
 
@@ -378,7 +380,7 @@ async function openWriteupPost(filename, title) {
     // Fetch the clean markdown file content
     const res = await fetch(`writeups/${filename}`);
     const text = await res.text();
-    
+
     // Render standard markdown to HTML
     document.getElementById('post-body').innerHTML = marked.parse(text);
     document.getElementById('win-content').scrollTop = 0;
